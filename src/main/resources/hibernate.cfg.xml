@@ -1,19 +1,19 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
-        <property name="connection.url">jdbc:mysql://localhost:3306/cinema_db?serverTimezone=UTC</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/movie_theater_db?serverTimezone=UTC</property>
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <property name="connection.username">root</property>
         <property name="connection.password">nikita199</property>
         <property name="show_sql">true</property>
         <property name="hbm2ddl.auto">create-drop</property>
 
-        <mapping class="cinema.model.CinemaHall" />
-        <mapping class="cinema.model.Movie" />
-        <mapping class="cinema.model.MovieSession" />
-        <mapping class="cinema.model.User" />
-        <mapping class="cinema.model.ShoppingCart" />
-        <mapping class="cinema.model.Ticket" />
-        <mapping class="cinema.model.Order" />
+        <mapping class="movie.theater.model.CinemaHall" />
+        <mapping class="movie.theater.model.Movie" />
+        <mapping class="movie.theater.model.MovieSession" />
+        <mapping class="movie.theater.model.User" />
+        <mapping class="movie.theater.model.ShoppingCart" />
+        <mapping class="movie.theater.model.Ticket" />
+        <mapping class="movie.theater.model.Order" />
     </session-factory>
 </hibernate-configuration>
