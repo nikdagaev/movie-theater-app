@@ -1,31 +1,22 @@
 package movie.theater.model;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "movie_sessions")
 public class MovieSession {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Movie movie;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private CinemaHall cinemaHall;
-    @Column(name = "show_time")
     private LocalDateTime showTime;
-
-    public MovieSession() {
-    }
 
     public Long getId() {
         return id;
@@ -60,32 +51,11 @@ public class MovieSession {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        MovieSession that = (MovieSession) o;
-        return Objects.equals(id, that.id)
-                && Objects.equals(movie, that.movie)
-                && Objects.equals(cinemaHall, that.cinemaHall)
-                && Objects.equals(showTime, that.showTime);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, movie, cinemaHall, showTime);
-    }
-
-    @Override
     public String toString() {
         return "MovieSession{"
                 + "id=" + id
                 + ", movie=" + movie
                 + ", cinemaHall=" + cinemaHall
-                + ", showTime=" + showTime
-                + '}';
+                + ", showTime=" + showTime + '}';
     }
 }

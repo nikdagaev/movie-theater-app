@@ -1,33 +1,21 @@
 package movie.theater.model;
 
 import java.util.List;
-import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
 @Entity
-@Table (name = "shopping_carts")
 public class ShoppingCart {
     @Id
     private Long id;
     @OneToMany
-    @JoinTable(name = "shopping_cart_tickets",
-            joinColumns = @JoinColumn(name = "shopping_cart_id"),
-            inverseJoinColumns = @JoinColumn(name = "ticket_id"))
     private List<Ticket> tickets;
-    @OneToOne
     @MapsId
-    @JoinColumn(name = "id")
+    @OneToOne
     private User user;
-
-    public ShoppingCart() {
-    }
 
     public Long getId() {
         return id;
@@ -54,27 +42,10 @@ public class ShoppingCart {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        ShoppingCart that = (ShoppingCart) o;
-        return Objects.equals(id, that.id)
-                && Objects.equals(tickets, that.tickets)
-                && Objects.equals(user, that.user);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, tickets, user);
-    }
-
-    @Override
     public String toString() {
-        return "ShoppingCart{" + "id=" + id + ", tickets="
-                + tickets + ", user=" + user + '}';
+        return "ShoppingCart{"
+                + "id=" + id
+                + ", tickets=" + tickets
+                + ", user=" + user + '}';
     }
 }
