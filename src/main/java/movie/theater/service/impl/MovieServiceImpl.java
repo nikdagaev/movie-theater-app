@@ -2,15 +2,18 @@ package movie.theater.service.impl;
 
 import java.util.List;
 import movie.theater.dao.MovieDao;
-import movie.theater.lib.Inject;
-import movie.theater.lib.Service;
+import movie.theater.exception.DataProcessingException;
 import movie.theater.model.Movie;
 import movie.theater.service.MovieService;
+import org.springframework.stereotype.Service;
 
 @Service
 public class MovieServiceImpl implements MovieService {
-    @Inject
-    private MovieDao movieDao;
+    private final MovieDao movieDao;
+
+    public MovieServiceImpl(MovieDao movieDao) {
+        this.movieDao = movieDao;
+    }
 
     @Override
     public Movie add(Movie movie) {
@@ -19,7 +22,8 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public Movie get(Long id) {
-        return movieDao.get(id).orElseThrow();
+        return movieDao.get(id).orElseThrow(
+                () -> new DataProcessingException("Can't get movie by id " + id));
     }
 
     @Override

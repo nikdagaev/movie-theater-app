@@ -7,5 +7,5 @@ import movie.theater.model.User;
 public interface OrderDao {
     Order add(Order order);
 
-    List<Order> getByUser(User user);
+    List<Order> getOrdersHistory(User user);
 }
